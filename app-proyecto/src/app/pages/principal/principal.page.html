@@ -1,0 +1,26 @@
+<ion-app>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="cafe">Ajustes</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-button class="cafe" expand="full" (click)=goToResetPass()>Cambiar Contrasena</ion-button>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button class="cafe"></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="cafe">{{usuario}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <img class="img" src="assets/images/perfil.svg" height="300px">
+      
+    </ion-content>
+  </div>
+</ion-app>

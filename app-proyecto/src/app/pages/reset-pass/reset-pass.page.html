@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="cafe">Restablecer Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-item>
+    <ion-input class="ion-margin-top" type="password" [(ngModel)]="mdl_contrasena2" label="Contraseña" labelPlacement="floating"> 
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="password" [(ngModel)]="mdl_contrasena1" label="Confirmar Contraseña" labelPlacement="floating"> 
+    </ion-input>
+  </ion-item>
+
+  <ion-button class="cafe ion-margin-top" expand="block" (click)="restablecerContrasena()"> Restablecer </ion-button>
+</ion-content>
