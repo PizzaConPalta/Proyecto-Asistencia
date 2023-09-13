@@ -8,12 +8,19 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class ResetPassPage implements OnInit {
 
-  mdl_contrasena1: string = '';
-  mdl_contrasena2: string = '';
+  usuario: string = '';
+  mdl_contrasenaNueva: string = '';
+  usuario_creado: string = '';
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    let extras = this.router.getCurrentNavigation();
+
+    if(extras?.extras.state) {
+      this.usuario_creado = extras?.extras.state['user'];
+    }
+    console.log(this.usuario_creado)
   }
 
   //PENDIENTE: No logro que pase los datos a la pagina del loggin, solo encontre como hacerlo con el constructor pero no me sirve pq se comporta raro
@@ -21,16 +28,16 @@ export class ResetPassPage implements OnInit {
 
   restablecerContrasena() {
 
-    if(this.mdl_contrasena1 == '' && this.mdl_contrasena2 == '') {
+    if(this.usuario == '' && this.mdl_contrasenaNueva == '') {
       console.log('DEBE INGRESAR CREDENCIALES');
     }
-    else if(this.mdl_contrasena1 == this.mdl_contrasena2){
+    else if(this.usuario == this.usuario_creado){
       let newPass: NavigationExtras = {
         state:{
-          pass1: this.mdl_contrasena1
+          newpass: this.mdl_contrasenaNueva
         }
       }
-      console.log(this.mdl_contrasena1)
+      console.log(this.mdl_contrasenaNueva)
       this.router.navigate(['login'], newPass);
     }
     else{

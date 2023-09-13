@@ -8,7 +8,7 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class PrincipalPage implements OnInit {
 
-  usuario : string = ''; //Pendiente: hacer que el loggin entregue el usuario que ingresa para cambiar este texto.
+  usuario : string = ''; 
 
   constructor(private router: Router) { 
     
@@ -18,11 +18,8 @@ export class PrincipalPage implements OnInit {
     let usuario = this.router.getCurrentNavigation();
 
     if(usuario?.extras.state) {
-      this.usuario = usuario?.extras.state["user"];
+      this.usuario = usuario?.extras.state["name"];
     }
   }
 
-  goToResetPass() {
-    this.router.navigate(['reset-pass']);
-  }
 }

@@ -27,8 +27,12 @@ export class LoginPage implements OnInit {
       this.usuario_creado = extras?.extras.state['user'];
       this.contrasena_creada = extras?.extras.state["pass"];
       this.nombre_creado = extras?.extras.state["name"];
-      this.contrasena_recuperada = extras?.extras.state["pass1"];
+      if(extras?.extras.state["newpass"] != undefined){
+        this.contrasena_creada = extras?.extras.state["newpass"];
+        console.log(extras?.extras.state["newpass"])
+      }
     }
+
   }
 
   irCrearUsuario() {
@@ -39,6 +43,14 @@ export class LoginPage implements OnInit {
     this.router.navigate(['crear-usuario'], extras);
   }
 
+  goToResetPass() {
+    let usuario: NavigationExtras = {
+      state: {
+        user: this.usuario_creado
+      }
+    }
+    this.router.navigate(['reset-pass'], usuario);
+  }
 
   login() {
     if(this.mdl_usuario == '' && this.mdl_contrasena == '') {
@@ -47,7 +59,7 @@ export class LoginPage implements OnInit {
     else if(this.mdl_usuario == this.usuario_creado &&  this.mdl_contrasena == this.contrasena_recuperada) {
       let usuario: NavigationExtras = {
         state: {
-          user: this.mdl_usuario
+          name: this.nombre_creado
         }
       }
       this.router.navigate(['principal'], usuario);
@@ -55,7 +67,7 @@ export class LoginPage implements OnInit {
     else if(this.mdl_usuario == this.usuario_creado && this.mdl_contrasena == this.contrasena_creada) {
       let usuario: NavigationExtras = {
         state: {
-          user: this.mdl_usuario
+          name: this.nombre_creado
         }
       }
       this.router.navigate(['principal'], usuario);
