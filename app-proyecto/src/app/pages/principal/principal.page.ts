@@ -8,14 +8,18 @@ import { Router } from '@angular/router';
 })
 export class PrincipalPage implements OnInit {
 
-  usuario : string = 'User'; //Pendiente: hacer que el loggin entregue el usuario que ingresa para cambiar este texto.
+  usuario : string = ''; //Pendiente: hacer que el loggin entregue el usuario que ingresa para cambiar este texto.
 
   constructor(private router: Router) { 
     
   }
 
   ngOnInit() {
-    
+    let usuario = this.router.getCurrentNavigation();
+
+    if(usuario?.extras.state) {
+      this.usuario = usuario?.extras.state["user"];
+    }
   }
 
   goToResetPass() {

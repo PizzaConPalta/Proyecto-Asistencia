@@ -26,15 +26,16 @@ export class ResetPassPage implements OnInit {
     }
     else if(this.mdl_contrasena1 == this.mdl_contrasena2){
       let newPass: NavigationExtras = {
+        replaceUrl: true,
         state: {
-          pass: this.mdl_contrasena1
+          pass1: this.mdl_contrasena1
         }
       }
   
       this.router.navigate(['login'], newPass);
     }
     else{
-      console.log('LAS CREDENCIALES DEBEN COINCIDIR');
+      alert('LAS CREDENCIALES DEBEN COINCIDIR');
     }
   }
 
