@@ -22,15 +22,12 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     // SE RECIBEN LOS PARÁMETROS ENVIADOS DE OTRAS PÁGINAS
     let extras = this.router.getCurrentNavigation();
-    let newPass = this.router.getCurrentNavigation();
 
     if(extras?.extras.state) {
       this.usuario_creado = extras?.extras.state['user'];
       this.contrasena_creada = extras?.extras.state["pass"];
       this.nombre_creado = extras?.extras.state["name"];
-    }
-    if(newPass?.extras.state) {
-      this.contrasena_recuperada = newPass?.extras.state["pass1"];
+      this.contrasena_recuperada = extras?.extras.state["pass1"];
     }
   }
 

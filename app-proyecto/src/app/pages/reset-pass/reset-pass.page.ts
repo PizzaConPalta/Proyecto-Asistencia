@@ -26,12 +26,11 @@ export class ResetPassPage implements OnInit {
     }
     else if(this.mdl_contrasena1 == this.mdl_contrasena2){
       let newPass: NavigationExtras = {
-        replaceUrl: true,
-        state: {
+        state:{
           pass1: this.mdl_contrasena1
         }
       }
-  
+      console.log(this.mdl_contrasena1)
       this.router.navigate(['login'], newPass);
     }
     else{

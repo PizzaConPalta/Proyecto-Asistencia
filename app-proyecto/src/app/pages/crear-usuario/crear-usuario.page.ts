@@ -15,10 +15,10 @@ export class CrearUsuarioPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+
   }
 
   crearUsuario() {
-
     // OBJETO QUE PERMITE ENVIAR PARÁMETROS DE UNA 
     // PÁGINA A OTRA
     let extras: NavigationExtras = {
@@ -28,7 +28,6 @@ export class CrearUsuarioPage implements OnInit {
         pass: this.mdl_contrasena
       }
     }
-
     this.router.navigate(['login'], extras);
   }
 
