@@ -8,7 +8,9 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class PrincipalPage implements OnInit {
 
-  usuario : string = ''; 
+  nombre : string = '';
+  usuario: string = '';
+  contrasena: string = '';
 
   constructor(private router: Router) { 
     
@@ -18,8 +20,22 @@ export class PrincipalPage implements OnInit {
     let usuario = this.router.getCurrentNavigation();
 
     if(usuario?.extras.state) {
-      this.usuario = usuario?.extras.state["name"];
+      this.nombre = usuario?.extras.state["name"];
+      this.usuario = usuario?.extras.state["user"];
+      this.contrasena = usuario?.extras.state["pass"];
     }
   }
 
-}
+  cierreSesion(){
+    let extra: NavigationExtras = {
+      replaceUrl: true,
+      state:{
+        user: this.usuario,
+        name: this.nombre,
+        pass: this.contrasena
+      }
+    }
+    this.router.navigate(['login'], extra);
+    }
+  }
+

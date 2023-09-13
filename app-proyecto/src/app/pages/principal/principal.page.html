@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-button class="cafe" expand="full">Boton :D</ion-button>
+      <ion-button class="cafe" (click)=cierreSesion() expand="full">Salir</ion-button>
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
@@ -15,7 +15,7 @@
         <ion-buttons slot="start">
           <ion-menu-button class="cafe"></ion-menu-button>
         </ion-buttons>
-        <ion-title class="cafe">Bienvenido, {{usuario}}</ion-title>
+        <ion-title class="cafe">Bienvenido, {{nombre}}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">

@@ -3,7 +3,7 @@ import { NavigationExtras, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
+  templateUrl: './login.page.html', 
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
@@ -11,11 +11,10 @@ export class LoginPage implements OnInit {
   usuario_creado: string = '';
   contrasena_creada: string = '';
   nombre_creado: string = '';
-  contrasena_recuperada: string = '';
+  contrasena_nueva: string = '';
 
   mdl_usuario: string = '';
   mdl_contrasena: string = '';
-
 
   constructor(private router: Router) { }
 
@@ -24,15 +23,15 @@ export class LoginPage implements OnInit {
     let extras = this.router.getCurrentNavigation();
 
     if(extras?.extras.state) {
-      this.usuario_creado = extras?.extras.state['user'];
-      this.contrasena_creada = extras?.extras.state["pass"];
+      this.usuario_creado = extras?.extras.state["user"];
       this.nombre_creado = extras?.extras.state["name"];
-      if(extras?.extras.state["newpass"] != undefined){
-        this.contrasena_creada = extras?.extras.state["newpass"];
-        console.log(extras?.extras.state["newpass"])
+      if(extras?.extras.state["pass1"] != undefined){
+        this.contrasena_creada = extras?.extras.state["pass1"];
+        console.log(extras?.extras.state["pass1"])
+      }else{
+        this.contrasena_creada = extras?.extras.state["pass"];
       }
     }
-
   }
 
   irCrearUsuario() {
@@ -45,36 +44,34 @@ export class LoginPage implements OnInit {
 
   goToResetPass() {
     let usuario: NavigationExtras = {
+      replaceUrl: true,
       state: {
-        user: this.usuario_creado
+        user: this.usuario_creado,
+        name: this.nombre_creado
       }
     }
     this.router.navigate(['reset-pass'], usuario);
   }
 
   login() {
-    if(this.mdl_usuario == '' && this.mdl_contrasena == '') {
+    if(this.mdl_usuario == '' || this.mdl_contrasena == '') {
       alert('DEBE INGRESAR CREDENCIALES');
-    }
-    else if(this.mdl_usuario == this.usuario_creado &&  this.mdl_contrasena == this.contrasena_recuperada) {
-      let usuario: NavigationExtras = {
-        state: {
-          name: this.nombre_creado
-        }
-      }
-      this.router.navigate(['principal'], usuario);
     }
     else if(this.mdl_usuario == this.usuario_creado && this.mdl_contrasena == this.contrasena_creada) {
       let usuario: NavigationExtras = {
+        replaceUrl: true,
         state: {
-          name: this.nombre_creado
+          name: this.nombre_creado,
+          user: this.usuario_creado,
+          pass: this.contrasena_creada
         }
       }
       this.router.navigate(['principal'], usuario);
     }
     else {
       alert('CREDENCIALES INVÁLIDAS');
-      console.log(this.contrasena_recuperada)
+      console.log(this.usuario_creado)
+      console.log(this.contrasena_creada)
     }
   }
 

@@ -22,6 +22,7 @@ export class CrearUsuarioPage implements OnInit {
     // OBJETO QUE PERMITE ENVIAR PARÁMETROS DE UNA 
     // PÁGINA A OTRA
     let extras: NavigationExtras = {
+      replaceUrl: true,
       state: {
         user: this.mdl_usuario,
         name: this.mdl_nombre,
